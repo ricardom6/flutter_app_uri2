@@ -34,7 +34,7 @@ class _exer1009State extends State<exer1009> {
           {"valor_Salario" : salario, "valor_Vendas": vendas, }));
 
 
-      int resul = resultJson["resul"];
+      String resul = resultJson["resul"];
 
       print(">> Retorno 1009:  $resul");
       setState(() {
