@@ -27,38 +27,26 @@ class _exer1001State extends State<exer1001> {
   }
 
   Future<int> _getSoma(intA, intB) async {
-    // Passando argumentos
-    //Future<int> _getSoma() async {
 
-    int soma;
     try {
       print("Future Soma");
-      //String resultString = await platformAndroid2.invokeMethod('getSoma',
-      //    {"valor_A" : intA, "valor_B": intB, });
 
       Map<String, dynamic> resultJson = jsonDecode(await platformAndroid2.invokeMethod('getSoma',
           {"valor_A" : intA, "valor_B": intB, }));
 
 
-      var soma = resultJson["soma"];
+      int soma = resultJson["soma"];
       var subtracao = resultJson["subtracao"];
 
       print(">> Resultado da soma:  $soma");
       print(">> Resultado da subtracao:  $subtracao");
-
-
-
-
-      soma = await platformAndroid2.invokeMethod('getSoma');
+      setState(() {
+        //int intX = soma;
+        intXController.text = (soma.toString());
+      });
     } on PlatformException catch (e) {
-      soma = 999;
-      print("Failed Soma: '${e.message}'.");
-    }
-    setState(() {
-      int intX = soma;
-      intXController.text = (intX.toString());
-    });
-  }
+      print(e.message);
+  }}
 
   @override
   Widget build(BuildContext context) {

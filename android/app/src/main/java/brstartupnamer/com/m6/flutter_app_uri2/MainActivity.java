@@ -21,30 +21,24 @@ public class MainActivity extends FlutterActivity {
         super.configureFlutterEngine(flutterEngine);
         new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL)
                 .setMethodCallHandler(
-                        (call, result) -> {
-                            System.out.println("primeiro1");
-                            // Note: this method is invoked on the main thread.
-                            if (call.method.equals("getIncremento")) {
-                                int _incremento = getIncremento();
-                                result.success(_incremento);
+                        (input, output) -> {
+                            switch (input.method) {
+                                case "getSoma":
+                                    int va = input.argument("valor_A");
+                                    int vb = input.argument("valor_B");
+
+                                    int resultadoSoma = va + vb;
+                                    int resultadoSubtracao = va - vb;
+
+                                    String retorno = String.format("{\"soma\": %d, \"subtracao\": %d}", resultadoSoma, resultadoSubtracao);
+
+
+                                    output.success(retorno);
+                                    break;
                             }
-                            if (call.method.equals("getSoma")){
-                                System.out.println("entrou");
-                                //final int intA = call.argument("intA");
-                                //final int intB = call.argument("intB");
-                                //int _soma = (intA + intB + 1000);
-                                int _soma = (1000);
-                                result.success(_soma);
-                        }
-
-
-                            else {
-                                result.notImplemented();
-                            }
-
-                        }
-                );
+                        });
     }
+
 
     private int getIncremento() {
         int _incremento = 0;
