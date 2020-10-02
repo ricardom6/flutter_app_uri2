@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'PageOne.dart';
 import 'dart:io' show Platform; //para identificar o dispositivo.
 import 'PageTwo.dart';
 import 'exer1001.dart';
+import 'exer1009.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -45,27 +45,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
-              onPressed: _incrementCounter,
-              child: Text("Incrementar"),
-              color: Colors.blueAccent,
-              textColor: Colors.white,
-            ),
-            RaisedButton(
-              onPressed: _decrementCounter,
-              child: Text("Decrementar"),
-              color: Colors.blueAccent,
-              textColor: Colors.white,
-            ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PageOne()));
-              },
-              child: Text("PageOne"),
-              color: Colors.blueAccent,
-              textColor: Colors.white,
-            ),
+
             RaisedButton(
               onPressed: () {
                 Navigator.push(context,
@@ -78,19 +58,20 @@ class _HomeState extends State<Home> {
             RaisedButton(
               onPressed: () {
                 Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => exer1009()));
+              },
+              child: Text("EX1009-SALARIO"),
+              color: Colors.blueAccent,
+              textColor: Colors.white,
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
                     MaterialPageRoute(builder: (context) => PageTwo()));
               },
               child: Text("Page two"),
               color: Colors.blueAccent,
               textColor: Colors.white,
-            ),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-              textAlign: TextAlign.center,
             ),
           ],
         ),

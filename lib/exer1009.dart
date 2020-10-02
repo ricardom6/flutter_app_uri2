@@ -4,46 +4,42 @@ import 'dart:convert';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: exer1001(),
+      home: exer1009(),
     ));
 
-class exer1001 extends StatefulWidget {
+class exer1009 extends StatefulWidget {
   @override
-  _exer1001State createState() => _exer1001State();
+  _exer1009State createState() => _exer1009State();
 }
 
-class _exer1001State extends State<exer1001> {
-  TextEditingController intAController = TextEditingController();
-  TextEditingController intBController = TextEditingController();
-  TextEditingController intXController = TextEditingController();
+class _exer1009State extends State<exer1009> {
+  TextEditingController salController = TextEditingController();
+  TextEditingController vendasController = TextEditingController();
+  TextEditingController resulController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  static const channel1001 = const MethodChannel('codigo.nativo/Android');
+  static const channel1009 = const MethodChannel('codigo.nativo/Android');
 
   void _somar() {
-    int intA = int.parse(intAController.text);
-    int intB = int.parse(intBController.text);
-    _getSoma(intA, intB); //Passando argumentos
-    //_getSoma();
+    int salario = int.parse(salController.text);
+    int vendas = int.parse(vendasController.text);
+    _getSalario(salario, vendas);
   }
 
-  Future<int> _getSoma(intA, intB) async {
+  Future<int> _getSalario(salario, vendas) async {
 
     try {
-      print("Future Soma");
+      print("chamando 1009");
 
-      Map<String, dynamic> resultJson = jsonDecode(await channel1001.invokeMethod('getSoma',
-          {"valor_A" : intA, "valor_B": intB, }));
+      Map<String, dynamic> resultJson = jsonDecode(await channel1009.invokeMethod('getSalario',
+          {"valor_Salario" : salario, "valor_Vendas": vendas, }));
 
 
-      int soma = resultJson["soma"];
-      var subtracao = resultJson["subtracao"];
+      int resul = resultJson["resul"];
 
-      print(">> Resultado da soma:  $soma");
-      print(">> Resultado da subtracao:  $subtracao");
+      print(">> Retorno 1009:  $resul");
       setState(() {
         //int intX = soma;
-        intXController.text = ("X = $soma");
-        print("teste de alteração");
+        resulController.text = ("$resul");
       });
     } on PlatformException catch (e) {
       print(e.message);
@@ -61,46 +57,46 @@ class _exer1001State extends State<exer1001> {
         }
         FocusScope.of(context).requestFocus(FocusNode());
       },
-      child: Text("1001 Somar"),
+      child: Text("1009 Salario"),
       color: Colors.blueAccent,
       textColor: Colors.white,
     );
 
     AppBar appBar = AppBar(
-      title: Text("Ex1001 Soma"),
+      title: Text("Ex1009 Salario"),
       centerTitle: true,
       //backgroundColor: Colors.black,
       actions: <Widget>[],
     );
 
-    TextFormField tFIntA = TextFormField(
+    TextFormField tFSalario = TextFormField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-        labelText: 'valor 1:',
+        labelText: 'Salario Fixo:',
         labelStyle: TextStyle(color: Colors.black, fontSize: 20),
         border: OutlineInputBorder(),
         //suffixText: "ºC",
       ),
       textAlign: TextAlign.center,
       style: styleField,
-      controller: intAController,
+      controller: salController,
       validator: (value) {
         if (value.isEmpty) {
           return "Informe um valor";
         }
       },
     );
-    TextFormField tFIntB = TextFormField(
+    TextFormField tFVendas = TextFormField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-        labelText: 'Valor 2:',
+        labelText: 'Total Vendas:',
         labelStyle: TextStyle(color: Colors.black, fontSize: 20),
         border: OutlineInputBorder(),
         //suffixText: "ºC",
       ),
       textAlign: TextAlign.center,
       style: styleField,
-      controller: intBController,
+      controller: vendasController,
       validator: (value) {
         if (value.isEmpty) {
           return "Informe um valor";
@@ -118,7 +114,7 @@ class _exer1001State extends State<exer1001> {
       ),
       textAlign: TextAlign.center,
       style: styleField,
-      controller: intXController,
+      controller: resulController,
     );
 
     Container containerBtn = Container(
@@ -129,13 +125,13 @@ class _exer1001State extends State<exer1001> {
 
     Padding pad = Padding(
       padding: EdgeInsets.all(8.0),
-      child: tFIntA,
+      child: tFResul,
     );
 
     Row row = Row(
       children: <Widget>[
-        Expanded(child: Padding(padding: EdgeInsets.all(4.0), child: tFIntA)),
-        Expanded(child: Padding(padding: EdgeInsets.all(4.0), child: tFIntB)),
+        Expanded(child: Padding(padding: EdgeInsets.all(4.0), child: tFSalario)),
+        Expanded(child: Padding(padding: EdgeInsets.all(4.0), child: tFVendas)),
       ],
     );
 
@@ -150,7 +146,8 @@ class _exer1001State extends State<exer1001> {
         Divider(),
         row,
         containerBtn,
-        tFResul,
+        //tFResul,
+        pad,
         Divider(),
         Divider(),
       ],

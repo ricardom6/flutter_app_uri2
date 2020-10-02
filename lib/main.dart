@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'PageOne.dart';
 import 'home.dart';
 import 'dart:io' show Platform; //para identificar o dispositivo.
 

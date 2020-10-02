@@ -36,6 +36,17 @@ public class MainActivity extends FlutterActivity {
                                     output.success(retorno);
                                     break;
                             }
+                            switch (input.method) {
+                                case "getSalario":
+                                    System.out.println("Entrou no metodo");
+                                    int vs = input.argument("valor_Salario");
+                                    int vv = input.argument("valor_Vendas");
+
+
+                                    String retorno = String.format("{\"resul\": %d}", vs);
+                                    output.success(retorno);
+                                    break;
+                            }
                         });
     }
 
