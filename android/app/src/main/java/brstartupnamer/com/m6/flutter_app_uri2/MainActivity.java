@@ -41,9 +41,13 @@ public class MainActivity extends FlutterActivity {
                                     System.out.println("Entrou no metodo");
                                     int vs = input.argument("valor_Salario");
                                     int vv = input.argument("valor_Vendas");
-                                    String txt = ("testeTXT");
+                                    System.out.println("antes da string");
 
-                                    String retorno = String.format("{\"resul\": %d}", txt);
+                                    String txt = ("testeTXT");
+                                    System.out.println("depois da string");
+
+                                    //String retorno = String.format("{\"resul\": \"Teste\"}");
+                                    String retorno = String.format("{\"resul\": \""+txt +"\"}");
                                     output.success(retorno);
                                     break;
                             }

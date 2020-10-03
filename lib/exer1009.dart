@@ -25,7 +25,7 @@ class _exer1009State extends State<exer1009> {
     _getSalario(salario, vendas);
   }
 
-  Future<int> _getSalario(salario, vendas) async {
+  Future _getSalario(salario, vendas) async {
 
     try {
       print("chamando 1009");
@@ -36,7 +36,7 @@ class _exer1009State extends State<exer1009> {
 
       String resul = resultJson["resul"];
 
-      print(">> Retorno 1009:  $resul");
+      print(">> Retorno 1009:  ");
       setState(() {
         //int intX = soma;
         resulController.text = ("$resul");
